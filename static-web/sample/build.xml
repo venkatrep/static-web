@@ -1,0 +1,21 @@
+<project name="BuildANT" default="war" >
+	<path id="mypath">
+		<fileset dir="WebContent\WEB-INF\lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<target name="compile">
+		<mkdir dir="build/classes" srcdir="src"/>
+		<javac destdir="build/classes" srcdir="src">
+			<classpath refid="mypath"/>
+		</javac>
+	</target>
+	
+	<target name="war" depends="compile">
+		<war destfile="SampleProject.war" webxml="WebContent/WEB-INF/web.xml">
+		<fileset dir="WebContent"/>
+		<classes dir="build/classes"/>
+		</war>
+	</target>
+</project>
